@@ -1,41 +1,54 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Login({ onLogin, goToRegister }) {
+function Register({ goToLogin }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     // simple check
-    if (!email || !password) {
+    if (!name || !email || !password) {
       setError("Please fill in all fields");
+      setSuccess("");
       return;
     }
 
     try {
-      const res = await axios.post("/api/login", {
+      await axios.post("/api/register", {
+        name,
         email,
         password,
       });
 
-      // send token to App.js
-      onLogin(res.data.token);
+      setSuccess("Registered! You can now login.");
+      setError("");
     } catch (err) {
       if (err.response) {
         setError(err.response.data.message);
       } else {
         setError("Something went wrong");
       }
+      setSuccess("");
     }
   };
 
   return (
     <div className="form-container">
       <div className="form-box">
-        <h2>Login</h2>
+        <h2>Register</h2>
 
         {error && <p className="error-msg">{error}</p>}
+        {success && <p className="success-msg">{success}</p>}
+
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
         <input
           type="email"
@@ -51,12 +64,12 @@ function Login({ onLogin, goToRegister }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleRegister}>Register</button>
 
         <p className="switch-text">
-          Don't have an account?{" "}
-          <span onClick={goToRegister} className="link">
-            Register here
+          Already have an account?{" "}
+          <span onClick={goToLogin} className="link">
+            Login here
           </span>
         </p>
       </div>
@@ -64,4 +77,4 @@ function Login({ onLogin, goToRegister }) {
   );
 }
 
-export default Login;
+export default Register;

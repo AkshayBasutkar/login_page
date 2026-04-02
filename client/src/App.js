@@ -1,25 +1,43 @@
-import GalaxyBackground from "./components/GalaxyBackground";
+import { useState } from "react";
+import Login from "./Login";
+import Register from "./Register";
+import Home from "./Home";
+import "./App.css";
 
 function App() {
-  return (
-    <div style={{ width: "100%", height: "100vh", position: "relative" }}>
-      <GalaxyBackground />
+  // page can be: "login", "register", "home"
+  const [page, setPage] = useState("login");
+  const [token, setToken] = useState("");
 
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-        }}
-      >
-        <h1>Login Page</h1>
-      </div>
+  // called after successful login
+  const handleLogin = (userToken) => {
+    setToken(userToken);
+    setPage("home");
+  };
+
+  // called when user clicks logout
+  const handleLogout = () => {
+    setToken("");
+    setPage("login");
+  };
+
+  // switch between login and register pages
+  const goToRegister = () => setPage("register");
+  const goToLogin = () => setPage("login");
+
+  return (
+    <div className="app">
+      {page === "login" && (
+        <Login onLogin={handleLogin} goToRegister={goToRegister} />
+      )}
+
+      {page === "register" && (
+        <Register goToLogin={goToLogin} />
+      )}
+
+      {page === "home" && (
+        <Home token={token} onLogout={handleLogout} />
+      )}
     </div>
   );
 }

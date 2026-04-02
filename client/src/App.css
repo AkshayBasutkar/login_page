@@ -1,38 +1,223 @@
-.App {
-  text-align: center;
+/* ===== GLOBAL STYLES ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* ===== APP WRAPPER ===== */
 
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
+}
+
+/* ===== LOGIN & REGISTER FORM ===== */
+
+.form-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.form-box {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  width: 380px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.form-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 26px;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.form-box input:focus {
+  border-color: #667eea;
+}
+
+.form-box button {
+  width: 100%;
+  padding: 12px;
+  background-color: #667eea;
   color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.form-box button:hover {
+  background-color: #5a6fd6;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.switch-text {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.link {
+  color: #667eea;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* ===== ERROR & SUCCESS MESSAGES ===== */
+
+.error-msg {
+  background-color: #ffe0e0;
+  color: #d32f2f;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.success-msg {
+  background-color: #e0f7e0;
+  color: #2e7d32;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* ===== HOME PAGE ===== */
+
+.home-container {
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 15px 30px;
+}
+
+.topbar h2 {
+  font-size: 20px;
+}
+
+.logout-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== PROFILE CARD ===== */
+
+.profile-card {
+  max-width: 500px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+}
+
+.profile-field {
+  margin-bottom: 18px;
+}
+
+.profile-field label {
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.profile-field p {
+  font-size: 16px;
+  color: #333;
+  padding: 8px 0;
+}
+
+.profile-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+.profile-field input:focus {
+  border-color: #667eea;
+}
+
+.profile-card button {
+  padding: 10px 25px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.profile-card button:hover {
+  background-color: #5a6fd6;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.cancel-btn {
+  background-color: #999 !important;
+}
+
+.cancel-btn:hover {
+  background-color: #777 !important;
 }
