@@ -18,19 +18,26 @@ const pool = new Pool({
 });
 
 // Create users table if it doesn't exist
-pool.query(`
-  CREATE TABLE IF NOT EXISTS users (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(100) DEFAULT '',
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(200) NOT NULL,
-    phone VARCHAR(20) DEFAULT ''
-  )
-`).then(() => {
-  console.log("Users table is ready");
-}).catch((err) => {
-  console.error("Error creating table:", err.message);
-});
+const setupDB = async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        email VARCHAR(100) UNIQUE NOT NULL,
+        password VARCHAR(200) NOT NULL
+      )
+    `);
+    
+    // Add columns if they are missing
+    await pool.query("ALTER TABLE users ADD COLUMN IF NOT EXISTS name VARCHAR(100) DEFAULT ''");
+    await pool.query("ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(20) DEFAULT ''");
+    
+    console.log("Users table is ready (columns verified)");
+  } catch (err) {
+    console.error("Error setting up table:", err.message);
+  }
+};
+setupDB();
 
 // REGISTER
 app.post("/api/register", async (req, res) => {
