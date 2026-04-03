@@ -26,6 +26,17 @@ body {
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea, #764ba2);
+  position: relative;
+  overflow: hidden;
+}
+
+.galaxy-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .form-box {
@@ -34,6 +45,8 @@ body {
   border-radius: 10px;
   width: 380px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  z-index: 1;
 }
 
 .form-box h2 {

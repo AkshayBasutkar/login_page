@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Galaxy from "./Galaxy";
 
 function Register({ goToLogin }) {
   const [name, setName] = useState("");
@@ -37,6 +38,9 @@ function Register({ goToLogin }) {
 
   return (
     <div className="form-container">
+      <div className="galaxy-bg">
+        <Galaxy transparent={false} />
+      </div>
       <div className="form-box">
         <h2>Register</h2>
 
